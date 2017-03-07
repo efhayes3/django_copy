@@ -1,0 +1,90 @@
+{%  load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Neighborhood Real Estate Pricing</title>
+    </head>
+    <body>
+
+        <div>
+            <h2><a href="{% url 'home' %}">Chicago Neighborhood Real Estate Pricing</a></h2>
+        </div>
+
+        <div>
+            <p>Look up the current school quality, crime rate, income level, and CTA availability
+            for a given neighborhood.</p>
+        </div>
+
+        <div>
+            <form method="post">
+                <table class='form'>
+                    {% csrf_token %}
+                    {{ form }}
+                </table>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+
+        {% if results %}
+        <div>
+            <table>
+                <tr>
+                    <td align="right">
+                        Crime Level:
+                    </td>
+                    <td align="left">
+                        {{ crime }}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        School Quality:
+                    </td>
+                    <td align="left">
+                        {{ school }}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        Income Level:
+                    </td>
+                    <td align="left">
+                        {{ income }}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        Has CTA Station?
+                    </td>
+                    <td align="left">
+                        {{ cta }}
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        Median Home Price:
+                    </td>
+                    <td align="left">
+                        {{ price }}
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        {% endif %}
+
+        <div>
+            <p>Data provided by <a href="http://www.trulia.com">Trulia</a> </p>
+        </div>
+
+    </body>
+</html>
+
